@@ -1,0 +1,77 @@
+﻿@model CodeFirst.Models.Product
+@using CodeFirst.Models;
+@{
+    ProductDbContext pd = new ProductDbContext();
+    var model = pd.Products.ToList();
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<div class="container">
+
+    @using (Html.BeginForm("AddRecord", "Home", FormMethod.Post))
+    {
+    <div class="row">
+        <div class="col-md-2">
+            <label class="alert alert-info" >Name</label>
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(Product => Product.Name,null,new { @class="form-control"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label class="alert alert-info">Price</label>
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(Product => Product.Price," ",new { @class="form-control"})
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <label class="alert alert-info">Description</label>
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(Product => Product.Description,null,new { @class="form-control"})
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <input id="Submit1" class="btn btn-info" type="submit" value="Add" />
+            <input id="Reset1" class="btn btn-outline-info" type="reset" value="reset" />
+        </div>
+    </div>
+    <br />
+    }
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in model)
+            {
+                <tr>
+                    
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <a href="/Home/Edit?Pid=@item.ID">Update</a>
+                        <a href="/Home/Delete?Pid=@item.ID">Delete</a>
+                        
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>

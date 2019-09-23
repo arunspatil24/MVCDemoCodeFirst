@@ -1,0 +1,64 @@
+﻿@model CodeFirst.Models.Catagory
+@using CodeFirst.Models;
+@{
+    ProductDbContext pd = new ProductDbContext();
+    var model = pd.catagorys.ToList();
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>categois index page</p>
+<div class="container">
+    @using (Html.BeginForm("InserCat","Home1",FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col=md=2">
+                <label>Category Name</label>
+            </div>
+            <div class="col=md-3">
+                @Html.TextBoxFor(Catagory => Catagory.CName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col=md=2">
+                <label>Category Price</label>
+            </div>
+            <div class="col=md-3">
+                @Html.TextBoxFor(Catagory => Catagory.Price)
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <input id="Submit1" class="btn btn-info" type="submit" value="Add" />
+                <input id="Reset1" class="btn btn-info" type="reset" value="reset" />
+            </div>
+        </div>
+    }
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            @foreach (var item in model)
+            {
+                <tr>
+                    <td>@item.CName</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <a href="/Home1/Edit?Id=@item.CID">Edit</a>
+                        <a href="/Home1/Delete?Id=@item.CID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

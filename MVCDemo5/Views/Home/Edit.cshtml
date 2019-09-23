@@ -1,0 +1,32 @@
+﻿@model MVCDemo5.Models.student_info
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("UpdateRecord", "Home", FormMethod.Post))
+        {
+            
+               
+                @Html.HiddenFor(student=>student.id)
+                <label>Name</label>
+                @Html.TextBoxFor(student => student.names)
+                <br />
+                <label>Mobile</label>
+                @Html.TextBoxFor(student => student.mobile)
+                <br />
+                <input id="Submit" type="submit" value="Update" />
+                <input id="Reset1" type="reset" value="reset" />
+            
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model CodeFirst.Models.Product
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<div class="container">
+    @using (Html.BeginForm("Update","Home",FormMethod.Post))
+    {
+        @Html.HiddenFor(model=>model.ID)
+        <div class="row">
+            <div class="col-md-1">
+                <label>Name</label>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <label>Price</label>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Price)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <label>Description</label>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Description)
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <input id="Submit1" type="submit" value="Update" />
+                <input id="Reset1" type="reset" value="reset" />
+            </div>
+        </div>
+    }
+</div>
